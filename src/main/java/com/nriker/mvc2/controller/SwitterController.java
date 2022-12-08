@@ -32,7 +32,9 @@ public class SwitterController {
 
 	@PostMapping("/add/post")
 	public String addPost(@RequestBody SwitterPost newPost) {
-		return newPost.getUserName() + ": " + newPost.getPostTitle() + "/\n Ok";
+		return newPost.getUserName() + 
+		": " + newPost.getPostTitle() + 
+		": " + newPost.getPostMessage() + "\nOk";
 	}
 	
 	// @PostMapping("/change/user")
