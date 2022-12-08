@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nriker.mvc2.model.SwitterUser;
+import com.nriker.mvc2.model.SwitterPost;
 
 //Todo RestCotroller res.
 @RestController
@@ -21,12 +22,36 @@ public class SwitterController {
 	@GetMapping("/hello")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
 		model.addAttribute("name", name);
-		return "hello";
+		return "Hello, World!";
 	}
-
 
 	@PostMapping("/add/user")
 	public String addUser(@RequestBody SwitterUser newUser) {
-		return newUser.getName() + ": " + newUser.getpassword();
+		return newUser.getName() + ": " + newUser.getPassword();
 	}
+
+	@PostMapping("/add/post")
+	public String addPost(@RequestBody SwitterPost newPost) {
+		return newPost.getUserName() + ": " + newPost.getPostTitle() + "/\n Ok";
+	}
+	
+	// @PostMapping("/change/user")
+	// public String changeUser(@RequestBody SwitterUser newUser) {
+	// 	return newUser.getName() + ": " + newUser.getPassword();
+	// }
+
+	// @PostMapping("/change/post")
+	// public String changePost(@RequestBody SwitterUser newUser) {
+	// 	return newUser.getName() + ": " + newUser.getPassword();
+	// }
+
+	// @PostMapping("/delete/user")
+	// public String deleteUser(@RequestBody SwitterUser newUser) {
+	// 	return newUser.getName() + ": " + newUser.getPassword();
+	// }
+
+	// @PostMapping("/delete/post")
+	// public String deletePost(@RequestBody SwitterUser newUser) {
+	// 	return newUser.getName() + ": " + newUser.getPassword();
+	// }
 }

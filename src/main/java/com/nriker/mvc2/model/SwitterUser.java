@@ -11,5 +11,5 @@ public class SwitterUser {
 
     public String getName() { return name; }
 
-    public String getpassword() { return password; }
+    public String getPassword() { return password; }
 }
