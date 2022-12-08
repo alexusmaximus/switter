@@ -21,6 +21,14 @@ public class SwitterService {
 		return repository.addUser(user);
 	}
 
+	public SwitterPost addPost(SwitterPost post) {
+		return repository.addPost(post);
+	}
+
+	public SwitterUser deleteUser(String userName) {
+		return repository.deleteUser(userName);
+	}
+
 	public String findUser(SwitterUser user) {
 		// return repository.findUser();
 		return "findUser: " + user.getName();

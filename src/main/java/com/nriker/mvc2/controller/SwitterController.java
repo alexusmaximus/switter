@@ -4,7 +4,9 @@ package com.nriker.mvc2.controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,13 +39,24 @@ public class SwitterController {
 	public SwitterUser addUser(@RequestBody SwitterUser user) {
 		return switterService.addUser(user);
 	}
-
+	
+	//Todo if false?
 	@PostMapping("/add/post")
-	public String addPost(@RequestBody SwitterPost newPost) {
-		return newPost.getUserName() + 
-		": " + newPost.getPostTitle() + 
-		": " + newPost.getPostMessage() + "\nOk";
+	public SwitterPost addPost(@RequestBody SwitterPost post) {
+		return switterService.addPost(post);
 	}
+
+	// ^[a-zA-Z0-9]+$
+	// ^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$ 
+	@DeleteMapping(value = "/delete/user/{userName:^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$ }")
+	public SwitterUser deleteUser(@PathVariable String userName) {
+		return switterService.deleteUser(userName);
+	}
+
+	// @PostMapping("/delete/post")
+	// public String deletePost(@RequestBody SwitterUser newUser) {
+	// 	return newUser.getName() + ": " + newUser.getPassword();
+	// }
 
 	@PostMapping("/find/user")
 	public String findUser(@RequestBody SwitterUser user) {
@@ -72,16 +85,6 @@ public class SwitterController {
 
 	// @PostMapping("/change/post")
 	// public String changePost(@RequestBody SwitterUser newUser) {
-	// 	return newUser.getName() + ": " + newUser.getPassword();
-	// }
-
-	// @PostMapping("/delete/user")
-	// public String deleteUser(@RequestBody SwitterUser newUser) {
-	// 	return newUser.getName() + ": " + newUser.getPassword();
-	// }
-
-	// @PostMapping("/delete/post")
-	// public String deletePost(@RequestBody SwitterUser newUser) {
 	// 	return newUser.getName() + ": " + newUser.getPassword();
 	// }
 }

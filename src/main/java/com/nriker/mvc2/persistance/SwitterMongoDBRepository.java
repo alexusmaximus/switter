@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.client.result.DeleteResult;
 import com.nriker.mvc2.model.SwitterPost;
 import com.nriker.mvc2.model.SwitterUser;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,15 +24,24 @@ public class SwitterMongoDBRepository {
 	@Value("${spring.data.mongodb.database.collection.posts}")
     private String postsCollection;
 
-	public SwitterUser addUser(SwitterUser newUser) {
-		return mongoTemplate.insert(newUser, usersCollection);
+	public SwitterUser addUser(SwitterUser user) {
+		return mongoTemplate.insert(user, usersCollection);
+	}
+
+	public SwitterPost addPost(SwitterPost post) {
+		return mongoTemplate.insert(post, postsCollection);
 	}
 
 	public List<SwitterUser> findAllUser() {
-        return mongoTemplate.findAll(SwitterUser.class, usersCollection);
+		return mongoTemplate.findAll(SwitterUser.class, usersCollection);
 	}
-
+	
     public List<SwitterPost> findAllPosts() {
-        return mongoTemplate.findAll(SwitterPost.class, postsCollection);
+		return mongoTemplate.findAll(SwitterPost.class, postsCollection);
     }
+
+	public SwitterUser deleteUser(String userName) {
+		Query query = new Query(Criteria.where("name").is(userName));
+		return mongoTemplate.findAndRemove(query, SwitterUser.class);
+	}
 }
