@@ -34,8 +34,8 @@ public class SwitterController {
 	}
 
 	@PostMapping("/add/user")
-	public String addUser(@RequestBody SwitterUser newUser) {
-		return newUser.getName() + ": " + newUser.getPassword();
+	public SwitterUser addUser(@RequestBody SwitterUser user) {
+		return switterService.addUser(user);
 	}
 
 	@PostMapping("/add/post")
@@ -60,10 +60,10 @@ public class SwitterController {
 		return switterService.findPost(post);
 	}
 
-	// @GetMapping("/find/all/posts")
-	// public List<SwitterUser> findAllPosts() {
-	// 	return switterService.findAllPosts();
-	// }
+	@GetMapping("/find/all/posts")
+	public List<SwitterPost> findAllPosts() {
+		return switterService.findAllPosts();
+	}
 
 	// @PostMapping("/change/user")
 	// public String changeUser(@RequestBody SwitterUser newUser) {

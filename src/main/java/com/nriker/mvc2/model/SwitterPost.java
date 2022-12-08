@@ -1,22 +1,28 @@
 package com.nriker.mvc2.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+
+@Document
 public class SwitterPost {
+    
+    @Id
+    private final String id;
     private final String userName;
-    private final String userPassword;
     private final String postTitle;
     private final String postMessage;
 
-    public SwitterPost (String userName, String userPassword,
+    public SwitterPost (String id, String userName,
      String postTitle, String postMessage) {
+        this.id = id;
         this.userName = userName;
-        this.userPassword = userPassword;
         this.postTitle = postTitle;
         this.postMessage = postMessage;
     }
 
-    public String getUserName() { return userName; }
+    public String getId() { return id; }
 
-    public String getUserPassword() { return userPassword; }
+    public String getUserName() { return userName; }
 
     public String getPostTitle() { return postTitle; }
 

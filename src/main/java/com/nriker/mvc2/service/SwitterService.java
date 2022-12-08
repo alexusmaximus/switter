@@ -17,6 +17,10 @@ public class SwitterService {
     @Autowired
     private SwitterMongoDBRepository repository;
 	
+	public SwitterUser addUser(SwitterUser user) {
+		return repository.addUser(user);
+	}
+
 	public String findUser(SwitterUser user) {
 		// return repository.findUser();
 		return "findUser: " + user.getName();
@@ -31,7 +35,7 @@ public class SwitterService {
         return "findPost: " + post.getPostTitle();
     }
 
-	// public List<SwitterUser> findAllPosts() {
-	// 	return repository.findAllPosts();
-	// }
+	public List<SwitterPost> findAllPosts() {
+		return repository.findAllPosts();
+	}
 }
