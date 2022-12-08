@@ -2,14 +2,14 @@ package com.nriker.mvc2.model;
 
 public class SwitterUser {
     private final String name;
-    private final String passwort;
+    private final String password;
 
-    public SwitterUser(String name, String passwort) {
+    public SwitterUser(String name, String password) {
         this.name = name;
-        this.passwort = passwort;
+        this.password = password;
     }
 
     public String getName() { return name; }
 
-    public String getPasswort() { return passwort; }
+    public String getpassword() { return password; }
 }
