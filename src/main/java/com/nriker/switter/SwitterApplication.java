@@ -1,4 +1,4 @@
-package com.nriker.mvc2;
+package com.nriker.switter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

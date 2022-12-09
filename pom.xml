@@ -11,9 +11,9 @@
 	</parent>
 	
 	<groupId>com.nriker</groupId>
-	<artifactId>mvc2</artifactId>
+	<artifactId>switter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mvc2</name>
+	<name>switter</name>
 	<description>Demo project for Spring Boot</description>
 	
 	<properties>

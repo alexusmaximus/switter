@@ -1,10 +1,10 @@
-package com.nriker.mvc2;
+package com.nriker.switter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Mvc2ApplicationTests {
+class SwitterApplicationTests {
 
 	@Test
 	void contextLoads() {
