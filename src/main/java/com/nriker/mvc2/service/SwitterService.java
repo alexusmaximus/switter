@@ -34,18 +34,16 @@ public class SwitterService {
 		return repository.deletePost(userPost);
 	}
 
-	public String findUser(SwitterUser user) {
-		// return repository.findUser();
-		return "findUser: " + user.getName();
+	public SwitterUser findUser(String userName) {
+		return repository.findUser(userName);
 	}
 
 	public List<SwitterUser> findAllUser() {
 		return repository.findAllUser();
 	}
 
-    public String findPost(SwitterPost post) {
-        // return repository.findPost();
-        return "findPost: " + post.getPostTitle();
+    public SwitterPost findPost(String postTitle) {
+        return repository.findPost(postTitle);
     }
 
 	public List<SwitterPost> findAllPosts() {

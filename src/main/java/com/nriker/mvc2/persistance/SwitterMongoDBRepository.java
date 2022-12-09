@@ -25,11 +25,31 @@ public class SwitterMongoDBRepository {
     private String postsCollection;
 
 	public SwitterUser addUser(SwitterUser user) {
-		return mongoTemplate.insert(user, usersCollection);
+		if (findUser(user.getName()) == null) {
+			return mongoTemplate.insert(user, usersCollection);
+		} else {
+			System.out.println("Der User schon existiert!");
+			return null;
+		}
 	}
 
 	public SwitterPost addPost(SwitterPost post) {
-		return mongoTemplate.insert(post, postsCollection);
+		if (findPost(post.getPostTitle()) == null) {
+			return mongoTemplate.insert(post, postsCollection);
+		} else {
+			System.out.println("Das Post schon existiert!");
+			return null;
+		}
+	}
+
+	public SwitterUser findUser(String userName) {
+		Query query = new Query(Criteria.where("name").is(userName));
+		return mongoTemplate.findOne(query, SwitterUser.class, usersCollection);
+	}
+
+	public SwitterPost findPost(String postTitle) {
+		Query query = new Query(Criteria.where("postTitle").is(postTitle));
+		return mongoTemplate.findOne(query, SwitterPost.class, postsCollection);
 	}
 
 	public List<SwitterUser> findAllUser() {

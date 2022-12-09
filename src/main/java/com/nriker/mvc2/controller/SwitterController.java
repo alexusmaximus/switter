@@ -57,8 +57,8 @@ public class SwitterController {
 	}
 
 	@PostMapping("/find/user")
-	public String findUser(@RequestBody SwitterUser user) {
-		return switterService.findUser(user);
+	public SwitterUser findUser(@RequestBody SwitterUser user) {
+		return switterService.findUser(user.getName());
 	}
 
 	@GetMapping("/find/all/users")
@@ -67,8 +67,8 @@ public class SwitterController {
 	}
 
 	@PostMapping("/find/post")
-	public String findPost(@RequestBody SwitterPost post) {
-		return switterService.findPost(post);
+	public SwitterPost findPost(@RequestBody SwitterPost post) {
+		return switterService.findPost(post.getPostTitle());
 	}
 
 	@GetMapping("/find/all/posts")
