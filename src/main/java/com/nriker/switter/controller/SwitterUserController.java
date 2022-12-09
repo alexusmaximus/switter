@@ -41,9 +41,9 @@ public class SwitterUserController {
 		return switterService.findUser(name);
 	}
 
-	// @PatchMapping("/{name}")
-	// public String changeUser(@PathVariable String name) {
-	// 	return switterService.updateUser(name);
+	// @PatchMapping
+	// public SwitterUser changeUser(@RequestBody SwitterUser user) {
+	// 	return switterService.updateUser(user);
 	// }
 
 	@GetMapping

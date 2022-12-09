@@ -46,6 +46,10 @@ public class SwitterService {
 		return postsRepository.findPost(postTitle);
 	}
 
+	public SwitterUser updateUser(SwitterUser user) {
+		return usersRepository.updateUser(user);
+	}
+
 	public List<SwitterUser> findAllUser() {
 		return usersRepository.findAllUser();
 	}
