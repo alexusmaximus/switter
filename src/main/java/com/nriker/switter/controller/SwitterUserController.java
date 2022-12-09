@@ -1,7 +1,10 @@
 package com.nriker.switter.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,28 +26,28 @@ public class SwitterUserController {
 
 	public static final String BASE_PATH = "/api/v1/user";
 
-	@PostMapping("/add")
+	@PostMapping("/")
 	public SwitterUser addUser(@RequestBody SwitterUser user) {
 		return switterService.addUser(user);
 	}
 
-	@PostMapping("/delete")
-	public SwitterUser deleteUser(@RequestBody SwitterUser user) {
-		return switterService.deleteUser(user.getName());
+	@DeleteMapping("/{name}")
+	public SwitterUser deleteUser(@PathVariable String name) {
+		return switterService.deleteUser(name);
 	}
 
-	@PostMapping("/find")
-	public SwitterUser findUser(@RequestBody SwitterUser user) {
-		return switterService.findUser(user.getName());
+	@GetMapping("/{name}")
+	public SwitterUser findUser(@PathVariable String name) {
+		return switterService.findUser(name);
 	}
 
-	@GetMapping("/find/all")
+	// @PatchMapping("/{name}")
+	// public String changeUser(@PathVariable String name) {
+	// 	return switterService.updateUser(name);
+	// }
+
+	@GetMapping
 	public List<SwitterUser> findAllUser() {
 		return switterService.findAllUser();
 	}
-
-	// @PostMapping("/change/user")
-	// public String changeUser(@RequestBody SwitterUser newUser) {
-	// 	return newUser.getName() + ": " + newUser.getPassword();
-	// }
 }
