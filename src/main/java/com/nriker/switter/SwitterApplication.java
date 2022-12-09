@@ -1,13 +1,13 @@
-package com.nriker.mvc2;
+package com.nriker.switter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Mvc2Application {
+public class SwitterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Mvc2Application.class, args);
+		SpringApplication.run(SwitterApplication.class, args);
 	}
 
 }
