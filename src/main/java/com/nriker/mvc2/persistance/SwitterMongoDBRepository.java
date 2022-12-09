@@ -42,6 +42,13 @@ public class SwitterMongoDBRepository {
 
 	public SwitterUser deleteUser(String userName) {
 		Query query = new Query(Criteria.where("name").is(userName));
-		return mongoTemplate.findAndRemove(query, SwitterUser.class);
+		// return mongoTemplate.remove(query, SwitterUser.class, usersCollection);
+		return mongoTemplate.findAndRemove(query, SwitterUser.class, usersCollection);
+	}
+
+	public SwitterPost deletePost(String postTitle) {
+		Query query = new Query(Criteria.where("postTitle").is(postTitle));
+		// return mongoTemplate.remove(query, SwitterUser.class, usersCollection);
+		return mongoTemplate.findAndRemove(query, SwitterPost.class, postsCollection);
 	}
 }

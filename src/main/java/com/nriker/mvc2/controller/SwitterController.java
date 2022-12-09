@@ -1,6 +1,5 @@
 package com.nriker.mvc2.controller;
 
-// import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +16,7 @@ import java.util.List;
 
 import com.nriker.mvc2.model.SwitterUser;
 import com.nriker.mvc2.service.SwitterService;
+import com.mongodb.client.result.DeleteResult;
 import com.nriker.mvc2.model.SwitterPost;
 
 //Todo RestCotroller res.
@@ -46,17 +46,15 @@ public class SwitterController {
 		return switterService.addPost(post);
 	}
 
-	// ^[a-zA-Z0-9]+$
-	// ^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$ 
-	@DeleteMapping(value = "/delete/user/{userName:^[a-zA-Z][a-zA-Z0-9-_\\.]{1,20}$ }")
-	public SwitterUser deleteUser(@PathVariable String userName) {
-		return switterService.deleteUser(userName);
+	@PostMapping("/delete/user")
+	public SwitterUser deleteUser(@RequestBody SwitterUser user) {
+		return switterService.deleteUser(user.getName());
 	}
 
-	// @PostMapping("/delete/post")
-	// public String deletePost(@RequestBody SwitterUser newUser) {
-	// 	return newUser.getName() + ": " + newUser.getPassword();
-	// }
+	@PostMapping("/delete/post")
+	public SwitterPost deletePost(@RequestBody SwitterPost post) {
+		return switterService.deletePost(post.getPostTitle());
+	}
 
 	@PostMapping("/find/user")
 	public String findUser(@RequestBody SwitterUser user) {
