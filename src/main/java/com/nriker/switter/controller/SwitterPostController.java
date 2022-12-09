@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import com.nriker.switter.service.SwitterService;
+import com.nriker.switter.service.SwitterPostService;
 import com.nriker.switter.model.SwitterPost;
 
 //Todo RestCotroller res.
@@ -21,7 +21,7 @@ import com.nriker.switter.model.SwitterPost;
 public class SwitterPostController {
 
 	@Autowired
-	private SwitterService switterService;
+	private SwitterPostService switterService;
 
 	public static final String BASE_PATH = "/api/v1/post";
 	

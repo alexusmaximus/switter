@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import com.nriker.switter.model.SwitterUser;
-import com.nriker.switter.service.SwitterService;
+import com.nriker.switter.service.SwitterUserService;
 
 //Todo RestCotroller res.
 @RestController
@@ -22,7 +22,7 @@ import com.nriker.switter.service.SwitterService;
 public class SwitterUserController {
 
 	@Autowired
-	private SwitterService switterService;
+	private SwitterUserService switterService;
 
 	public static final String BASE_PATH = "/api/v1/user";
 
