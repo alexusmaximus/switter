@@ -26,7 +26,7 @@ public class SwitterUserController {
 
 	public static final String BASE_PATH = "/api/v1/user";
 
-	@PostMapping("/")
+	@PostMapping
 	public SwitterUser addUser(@RequestBody SwitterUser user) {
 		return switterService.addUser(user);
 	}
