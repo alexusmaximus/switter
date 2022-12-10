@@ -8,21 +8,21 @@ public class SwitterPost {
     
     @Id
     private final String id;
-    private final String userName;
+    private final String userID;
     private final String postTitle;
     private final String postMessage;
 
-    public SwitterPost (String id, String userName,
+    public SwitterPost (String id, String userID,
      String postTitle, String postMessage) {
         this.id = id;
-        this.userName = userName;
+        this.userID = userID;
         this.postTitle = postTitle;
         this.postMessage = postMessage;
     }
 
     public String getId() { return id; }
 
-    public String getUserName() { return userName; }
+    public String getUserID() { return userID; }
 
     public String getPostTitle() { return postTitle; }
 
