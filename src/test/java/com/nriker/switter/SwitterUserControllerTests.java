@@ -4,10 +4,15 @@ import static org.mockito.Mockito.when;
 
 import org.apache.tomcat.util.http.parser.MediaType;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,30 +26,56 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-@WebMvcTest(SwitterUserController.class)
+import static org.assertj.core.api.Assertions.assertThat;
+
+//SpringRunner - Enviroment, die unsere Tests startet.
+// @RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+// @WebMvcTest(SwitterUserController.class)
 public class SwitterUserControllerTests {
+    @LocalServerPort
+    private int port;
+
     @Autowired
-    private MockMvc mockMvc;
+    private SwitterUserController switterUserController;
 
-    private final String userName = "userName1";
-
-    @MockBean
-    private SwitterUserRepository usersRepository;
-
-    @MockBean
-    private SwitterUserService switterUserService;
+    @Autowired
+    TestRestTemplate restTemplate;
 
     @Test
-    public void SwitterUserControllerTest() throws Exception {
-        SwitterUser switterUser = new SwitterUser("1", userName, "123");
-        when(usersRepository.findUser(userName)).thenReturn(switterUser);
-
-        mockMvc.perform(MockMvcRequestBuilders
-        .get("/api/v1/user/" + userName)
-        .accept(APPLICATION_JSON))
-        .andExpect(status().isOk())
-        .andDo(print())
-        // .andExpect(jsonPath("$.name").value(userName))
-        ;
+    public void userControllerTest() throws Exception {
+        assertThat(switterUserController).isNotNull();
     }
+
+    @Test
+    public void helloWorldTest() throws Exception {
+        assertThat(this.restTemplate.getForObject("http://localhost:"
+         + port + "/api/v1/user/hello",
+				String.class)).contains("Hello, World");
+	}
+
+    //     @Autowired
+//     private MockMvc mockMvc;
+
+//     private final String userName = "userName1";
+
+//     @MockBean
+//     private SwitterUserRepository usersRepository;
+
+//     @MockBean
+//     private SwitterUserService switterUserService;
+
+//     @Test
+//     public void SwitterUserControllerTest() throws Exception {
+//         // SwitterUser switterUser = new SwitterUser("1", userName, "123");
+//         // when(usersRepository.findUser(userName)).thenReturn(switterUser);
+
+//         mockMvc.perform(MockMvcRequestBuilders
+//         .get("/api/v1/user/" + userName)
+//         .accept(APPLICATION_JSON))
+//         .andExpect(status().isOk())
+//         .andDo(print())
+//         // .andExpect(jsonPath("$.name").value(userName))
+//         ;
+//     }
 }
