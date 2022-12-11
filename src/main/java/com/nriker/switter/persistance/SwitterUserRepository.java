@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.core.query.UpdateDefinition;
 import org.springframework.stereotype.Repository;
 
+import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterUser;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -28,6 +29,12 @@ public class SwitterUserRepository {
 			System.out.println("Der User schon existiert!");
 			return null;
 		}
+	}
+
+	public SwitterUser addLike(SwitterUser user, SwitterLike like) {
+		user.setLike(like.getID());
+		Query query = new Query(Criteria.where("id").is(user.getId()));
+		return mongoTemplate.findAndReplace(query, user, usersCollection);
 	}
 	
 	public SwitterUser updateUser(SwitterUser user) {

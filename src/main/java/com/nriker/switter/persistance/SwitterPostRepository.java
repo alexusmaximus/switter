@@ -34,11 +34,7 @@ public class SwitterPostRepository {
 
 	public SwitterPost likePost(SwitterPost post, SwitterLike like) {
 		post.setLike(like.getID());
-		// String postTitle = post.getPostTitle();
 		Query query = new Query(Criteria.where("id").is(post.getId()));
-		// // Query query = new Query(Criteria.where("id").is(post.getId()));
-		// SwitterPost newPost = mongoTemplate.findOne(query, SwitterPost.class);
-		// // SwitterPost newPost = findPost(post.getPostTitle());
 		return mongoTemplate.findAndReplace(query, post, postsCollection);
 	}
 

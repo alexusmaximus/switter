@@ -15,6 +15,8 @@ public class SwitterLike {
 	}
 
 	public String getID() { return id; }
+	
 	public String getUserId() { return userId; }
+	
 	public String getPostId() { return postId; }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
+import com.nriker.switter.model.SwitterUser;
 import com.nriker.switter.persistance.SwitterLikeRepository;
 import com.nriker.switter.persistance.SwitterPostRepository;
 
@@ -22,7 +23,8 @@ public class SwitterLikeService {
     private SwitterLikeRepository likesRepository;
 	
 	public SwitterLike addLike(SwitterLike like) {
-		if (switterUserService.findUserById(like.getUserId()) == null) {
+		SwitterUser switterUser = switterUserService.findUserById(like.getUserId());
+		if (switterUser == null) {
 			System.out.println("Der User nicht existiert!");
 			return null;
 		}
@@ -33,7 +35,8 @@ public class SwitterLikeService {
 		}
 		SwitterLike likeInDB = likesRepository.addLike(like);
 		if (likeInDB != null) {
-			switterPost = switterPostService.likePost(switterPost, likeInDB);
+			switterPostService.likePost(switterPost, likeInDB);
+			switterUserService.addLike(switterUser, likeInDB);
 		}
 		return likeInDB;
 	}

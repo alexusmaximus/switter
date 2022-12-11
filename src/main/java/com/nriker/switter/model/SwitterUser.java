@@ -1,5 +1,7 @@
 package com.nriker.switter.model;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,9 +12,9 @@ public class SwitterUser {
     private final String id;
     private final String name;
     private final String password;
-    private String[] likes;
+    private ArrayList<String> likes;
 
-    public SwitterUser(String id, String name, String password, String[] likes) {
+    public SwitterUser(String id, String name, String password, ArrayList<String> likes) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -25,9 +27,15 @@ public class SwitterUser {
 
     public String getPassword() { return password; }
 
-    public String[] getLikes() { return likes; }
+    public ArrayList<String> getLikes() { return likes; }
 
-    public void setLikes(String[] likes) {
-        this.likes = likes;
+    public void setLike(String likeId) {
+        if (this.likes == null) {
+            ArrayList <String> likes = new ArrayList<>();
+            likes.add(likeId);
+            this.likes = likes;
+        } else {
+        	this.likes.add(likeId);
+		}
     }
 }
