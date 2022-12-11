@@ -26,8 +26,6 @@ public class SwitterUserController {
 
 	public static final String BASE_PATH = "/api/v1/user";
 
-	// eine sonnlose Methode, um nur einen Unittest mit TestRestTemplate zu machen
-	// SwitterUserController.java
 	@GetMapping("/hello")
 	public String helloWorld() {
 		return "Hello, World!";
