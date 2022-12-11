@@ -28,7 +28,13 @@ public class SwitterPostService {
 		return postsRepository.findPost(postTitle);
 	}
 
+	public SwitterPost findPostById(String postId) {
+		return postsRepository.findPostById(postId);
+	}
+
 	public List<SwitterPost> findAllPosts() {
 		return postsRepository.findAllPosts();
 	}
+
+	// public 
 }

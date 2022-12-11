@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import com.nriker.switter.service.SwitterPostService;
+import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
 
 //Todo RestCotroller res.
@@ -40,6 +41,16 @@ public class SwitterPostController {
 	public SwitterPost findPost(@PathVariable String postTitle) {
 		return switterService.findPost(postTitle);
 	}
+
+	@GetMapping("/id/{postId}")
+	public SwitterPost findPostById(@PathVariable String postId) {
+		return switterService.findPostById(postId);
+	}
+
+	// @PostMapping("/like")
+	// public SwitterPost likePost(@RequestBody SwitterLike like) {
+
+	// }
 
 	// @PostMapping("/change/post")
 	// public String changePost(@RequestBody SwitterUser newUser) {

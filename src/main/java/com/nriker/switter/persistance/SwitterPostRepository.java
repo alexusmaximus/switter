@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
 import com.nriker.switter.model.SwitterUser;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,11 @@ public class SwitterPostRepository {
 		Query query = new Query(Criteria.where("postTitle").is(postTitle));
 		return mongoTemplate.findOne(query, SwitterPost.class, postsCollection);
 	}
+
+	public SwitterPost findPostById(String postId) {
+		Query query = new Query(Criteria.where("id").is(postId));
+		return mongoTemplate.findOne(query, SwitterPost.class, postsCollection);
+	}
 	
     public List<SwitterPost> findAllPosts() {
 		return mongoTemplate.findAll(SwitterPost.class, postsCollection);
@@ -40,7 +46,12 @@ public class SwitterPostRepository {
 
 	public SwitterPost deletePost(String postTitle) {
 		Query query = new Query(Criteria.where("postTitle").is(postTitle));
-		// return mongoTemplate.remove(query, SwitterUser.class, usersCollection);
 		return mongoTemplate.findAndRemove(query, SwitterPost.class, postsCollection);
 	}
+
+	// public SwitterLike likePost(SwitterLike like) {
+	// 	Query query = new Query(Criteria.where("id").is(like.getPostId()));
+	// 	SwitterPost post = findPostById(like.getPostId());
+		
+	// }
 }
