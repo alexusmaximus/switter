@@ -56,8 +56,8 @@ public class SwitterLikeController {
 	// 	return newUser.getName() + ": " + newUser.getPassword();
 	// }
 
-	// @GetMapping
-	// public List<SwitterPost> findAllPosts() {
-	// 	return switterService.findAllPosts();
-	// }
+	@GetMapping
+	public List<SwitterLike> findAllLikes() {
+		return switterService.findAllLikes();
+	}
 }

@@ -61,16 +61,14 @@ public class SwitterLikeRepository {
 	public List<SwitterLike> findAllLikesByPostId(String postId) {
 		Query query = new Query(Criteria.where("postId").is(postId));
 		return mongoTemplate.find(query, SwitterLike.class, likesCollection);
+	}
+
+	public List<SwitterLike> findAllLikes() {
+		return mongoTemplate.findAll(SwitterLike.class, likesCollection);
     }
 
 	public SwitterLike deleteLike(String likeId) {
 		Query query = new Query(Criteria.where("id").is(likeId));
 		return mongoTemplate.findAndRemove(query, SwitterLike.class, likesCollection);
 	}
-
-	// public SwitterLike likePost(SwitterLike like) {
-	// 	Query query = new Query(Criteria.where("id").is(like.getPostId()));
-	// 	SwitterPost post = findPostById(like.getPostId());
-		
-	// }
 }

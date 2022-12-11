@@ -38,11 +38,7 @@ public class SwitterLikeService {
 		return likesRepository.findAllLikesByPostId(postId);
 	}
 
-	// public SwitterPost findPostById(String postId) {
-	// 	return postsRepository.findPostById(postId);
-	// }
-
-	// public List<SwitterPost> findAllPosts() {
-	// 	return postsRepository.findAllPosts();
-	// }
+	public List<SwitterLike> findAllLikes() {
+		return likesRepository.findAllLikes();
+	}
 }
