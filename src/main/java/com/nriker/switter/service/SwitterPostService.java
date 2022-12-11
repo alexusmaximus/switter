@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
 import com.nriker.switter.persistance.SwitterPostRepository;
 
@@ -18,6 +19,10 @@ public class SwitterPostService {
 	
 	public SwitterPost addPost(SwitterPost post) {
 		return postsRepository.addPost(post);
+	}
+
+	public SwitterPost likePost(SwitterPost post, SwitterLike like) {
+		return postsRepository.likePost(post, like);
 	}
 
 	public SwitterPost deletePost(String userPost) {

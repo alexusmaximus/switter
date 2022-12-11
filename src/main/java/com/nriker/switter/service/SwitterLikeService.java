@@ -31,11 +31,11 @@ public class SwitterLikeService {
 			System.out.println("Das Post nicht existiert!");
 			return null;
 		}
-		SwitterLike newLike = likesRepository.addLike(like);
-		if (newLike != null) {
-			switterPost.setLike(newLike.getID());
+		SwitterLike likeInDB = likesRepository.addLike(like);
+		if (likeInDB != null) {
+			switterPost = switterPostService.likePost(switterPost, likeInDB);
 		}
-		return newLike;
+		return likeInDB;
 	}
 
 	public SwitterLike deleteLike(String likeId) {
