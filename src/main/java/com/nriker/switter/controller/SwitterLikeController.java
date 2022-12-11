@@ -51,11 +51,6 @@ public class SwitterLikeController {
 		return switterService.findAllLikesByPostId(postId);
 	}
 
-	// @PostMapping("/change/post")
-	// public String changePost(@RequestBody SwitterUser newUser) {
-	// 	return newUser.getName() + ": " + newUser.getPassword();
-	// }
-
 	@GetMapping
 	public List<SwitterLike> findAllLikes() {
 		return switterService.findAllLikes();

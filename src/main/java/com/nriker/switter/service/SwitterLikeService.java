@@ -14,12 +14,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 //Todo Service res.
 @Service
 public class SwitterLikeService {
-
+	@Autowired
+	private SwitterPostService switterPostService;
+	@Autowired
+	private SwitterUserService switterUserService;
 	@Autowired
     private SwitterLikeRepository likesRepository;
 	
 	public SwitterLike addLike(SwitterLike like) {
-		return likesRepository.addLike(like);
+		if (switterUserService.findUserById(like.getUserId()) == null) {
+			System.out.println("Der User nicht existiert!");
+			return null;
+		}
+		SwitterPost switterPost = switterPostService.findPostById(like.getPostId());
+		if (switterPost == null) {
+			System.out.println("Das Post nicht existiert!");
+			return null;
+		}
+		SwitterLike newLike = likesRepository.addLike(like);
+		if (newLike != null) {
+			switterPost.setLike(newLike.getID());
+		}
+		return newLike;
 	}
 
 	public SwitterLike deleteLike(String likeId) {

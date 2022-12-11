@@ -50,11 +50,4 @@ public class SwitterPostRepository {
 		Query query = new Query(Criteria.where("postTitle").is(postTitle));
 		return mongoTemplate.findAndRemove(query, SwitterPost.class, postsCollection);
 	}
-
-	// public SwitterLike likePost(SwitterLike like) {
-	// 	SwitterLike 
-	// 	Query query = new Query(Criteria.where("id").is(like.getPostId()));
-	// 	SwitterPost post = findPostById(like.getPostId());
-	// 	return null;
-	// }
 }

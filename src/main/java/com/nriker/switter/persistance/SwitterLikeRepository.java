@@ -16,10 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Repository
 public class SwitterLikeRepository {
-    @Autowired
-	private SwitterPostService switterPostService;
-	@Autowired
-	private SwitterUserService switterUserService;
 	@Autowired
     private MongoTemplate mongoTemplate;
 
@@ -27,16 +23,6 @@ public class SwitterLikeRepository {
     private String likesCollection;
 
 	public SwitterLike addLike(SwitterLike like) {
-		if (switterUserService.findUserById(like.getUserId()) == null) {
-			System.out.println("Der User nicht existiert!");
-			return null;
-		}
-
-		if (switterPostService.findPostById(like.getPostId()) == null) {
-			System.out.println("Das Post nicht existiert!");
-			return null;
-		}
-
 		Query query = new Query(Criteria
 		.where("userId").is(like.getUserId())
 		.and("postId").is(like.getPostId()));

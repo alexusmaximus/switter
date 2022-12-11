@@ -1,6 +1,9 @@
 package com.nriker.switter.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 
 @Document
@@ -11,10 +14,10 @@ public class SwitterPost {
     private final String userId;
     private final String postTitle;
     private final String postMessage;
-    private String[] likes;
+    private ArrayList <String> likes;
 
     public SwitterPost (String id, String userId,
-     String postTitle, String postMessage, String[] likes) {
+     String postTitle, String postMessage, ArrayList <String> likes) {
         this.id = id;
         this.userId = userId;
         this.postTitle = postTitle;
@@ -30,9 +33,15 @@ public class SwitterPost {
 
     public String getPostMessage() { return postMessage; }
 
-    public String[] getLikes() { return likes; }
+    public ArrayList <String> getLikes() { return likes; }
 
-    public void setLike(String[] likes) {
-        this.likes = likes;
+    public void setLike(String likeId) {
+        if (this.likes == null) {
+            ArrayList <String> likes = new ArrayList<>();
+            likes.add(likeId);
+            this.likes = likes;
+        } else {
+        	this.likes.add(likeId);
+		}
     }
 }

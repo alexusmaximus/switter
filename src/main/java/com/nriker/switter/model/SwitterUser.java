@@ -10,11 +10,13 @@ public class SwitterUser {
     private final String id;
     private final String name;
     private final String password;
+    private String[] likes;
 
-    public SwitterUser(String id, String name, String password) {
+    public SwitterUser(String id, String name, String password, String[] likes) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.likes = likes;
     }
 
     public String getId() { return id; }
@@ -22,4 +24,10 @@ public class SwitterUser {
     public String getName() { return name; }
 
     public String getPassword() { return password; }
+
+    public String[] getLikes() { return likes; }
+
+    public void setLikes(String[] likes) {
+        this.likes = likes;
+    }
 }

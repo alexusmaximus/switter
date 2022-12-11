@@ -35,6 +35,4 @@ public class SwitterPostService {
 	public List<SwitterPost> findAllPosts() {
 		return postsRepository.findAllPosts();
 	}
-
-	// public 
 }
