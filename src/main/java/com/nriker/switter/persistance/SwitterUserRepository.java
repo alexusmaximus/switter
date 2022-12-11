@@ -45,6 +45,11 @@ public class SwitterUserRepository {
 		return mongoTemplate.findOne(query, SwitterUser.class, usersCollection);
 	}
 
+	public SwitterUser findUserById(String userId) {
+		Query query = new Query(Criteria.where("id").is(userId));
+		return mongoTemplate.findOne(query, SwitterUser.class, usersCollection);
+	}
+
 	public List<SwitterUser> findAllUser() {
 		return mongoTemplate.findAll(SwitterUser.class, usersCollection);
 	}

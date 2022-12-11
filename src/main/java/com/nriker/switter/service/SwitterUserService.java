@@ -32,6 +32,10 @@ public class SwitterUserService {
 		return usersRepository.findUser(userName);
 	}
 
+	public SwitterUser findUserById(String userId) {
+		return usersRepository.findUserById(userId);
+	}
+
 	public List<SwitterUser> findAllUser() {
 		return usersRepository.findAllUser();
 	}

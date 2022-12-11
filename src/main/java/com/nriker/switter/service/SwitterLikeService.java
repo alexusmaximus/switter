@@ -22,9 +22,9 @@ public class SwitterLikeService {
 		return likesRepository.addLike(like);
 	}
 
-	// public SwitterPost deletePost(String userPost) {
-	// 	return postsRepository.deletePost(userPost);
-	// }
+	public SwitterLike deleteLike(String likeId) {
+		return likesRepository.deleteLike(likeId);
+	}
 
 	public SwitterLike findLikeById(String likeId) {
 		return likesRepository.findLikeById(likeId);

@@ -31,15 +31,10 @@ public class SwitterLikeController {
 		return switterService.addLike(like);
 	}
 
-	// @DeleteMapping("/{postTitle}")
-	// public SwitterPost deletePost(@PathVariable String postTitle) {
-	// 	return switterService.deletePost(postTitle);
-	// }
-
-	// @GetMapping("/{postTitle}")
-	// public SwitterPost findPost(@PathVariable String postTitle) {
-	// 	return switterService.findPost(postTitle);
-	// }
+	@DeleteMapping("/{likeId}")
+	public SwitterLike deleteLike(@PathVariable String likeId) {
+		return switterService.deleteLike(likeId);
+	}
 
 	@GetMapping("/id/{likeId}")
 	public SwitterLike findLikeById(@PathVariable String likeId) {

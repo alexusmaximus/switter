@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
 import com.nriker.switter.model.SwitterUser;
+import com.nriker.switter.service.SwitterLikeService;
+
 import org.springframework.beans.factory.annotation.Value;
 
 @Repository
@@ -50,8 +52,9 @@ public class SwitterPostRepository {
 	}
 
 	// public SwitterLike likePost(SwitterLike like) {
+	// 	SwitterLike 
 	// 	Query query = new Query(Criteria.where("id").is(like.getPostId()));
 	// 	SwitterPost post = findPostById(like.getPostId());
-		
+	// 	return null;
 	// }
 }
