@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nriker.switter.service.SwitterLikeService;
 import com.nriker.switter.model.SwitterLike;
+import com.nriker.switter.model.SwitterUser;
 
 //Todo RestCotroller res.
 @RestController
@@ -44,6 +45,11 @@ public class SwitterLikeController {
 	@GetMapping("/userId/{userId}")
 	public List<SwitterLike> findAllLikesByUserId(@PathVariable String userId) {
 		return switterService.findAllLikesByUserId(userId);
+	}
+
+	@GetMapping("/likedPost/{postId}")
+	public List<SwitterUser> findAllUsersThatLikedPostByPostId(@PathVariable String postId) {
+		return switterService.findAllUsersThatLikedPostByPostId(postId);
 	}
 
 	@GetMapping("/postId/{postId}")

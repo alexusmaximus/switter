@@ -46,6 +46,11 @@ public class SwitterUserController {
 		return switterService.findUser(name);
 	}
 
+	// @GetMapping("/usersLikes/{postId}")
+	// public List<SwitterUser> findAllUsersThatLikedPostByPostId(@PathVariable String postId) {
+
+	// }
+
 	// @PatchMapping
 	// public SwitterUser changeUser(@RequestBody SwitterUser user) {
 	// 	return switterService.updateUser(user);

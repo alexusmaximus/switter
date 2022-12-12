@@ -1,5 +1,6 @@
 package com.nriker.switter.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -55,6 +56,21 @@ public class SwitterLikeService {
 
 	public List<SwitterLike> findAllLikesByPostId(String postId) {
 		return likesRepository.findAllLikesByPostId(postId);
+	}
+
+	public List<SwitterUser> findAllUsersThatLikedPostByPostId(String postid) {
+		List<SwitterLike> likes = findAllLikesByPostId(postid);
+		if (likes == null) {
+			return null;
+		}
+		List<SwitterUser> users = new ArrayList();
+		likes.stream().forEach(S -> {
+			SwitterUser user = switterUserService.findUserById(S.getUserId());
+			if (user != null) {
+				users.add(user);
+			}
+		});
+		return users;
 	}
 
 	public List<SwitterLike> findAllLikes() {
