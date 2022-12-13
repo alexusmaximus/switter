@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 
 import com.nriker.switter.service.SwitterLikeService;
 import com.nriker.switter.model.SwitterLike;
@@ -28,18 +30,24 @@ public class SwitterLikeController {
 	
 	//Todo if false?
 	@PostMapping
-	public SwitterLike addLike(@RequestBody SwitterLike like) {
-		return switterService.addLike(like);
+	public ResponseEntity<SwitterLike> addLike(@RequestBody SwitterLike like) {
+		SwitterLike createdLike = switterService.addLike(like);
+		return ResponseEntity.created(URI.create(BASE_PATH + "/" + createdLike.getID())).build();
 	}
 
 	@DeleteMapping("/{likeId}")
-	public SwitterLike deleteLike(@PathVariable String likeId) {
-		return switterService.deleteLike(likeId);
+	public ResponseEntity<SwitterLike> deleteLike(@PathVariable String likeId) {
+		 switterService.deleteLike(likeId);
+		 return ResponseEntity.ok().build();
 	}
 
 	@GetMapping("/id/{likeId}")
-	public SwitterLike findLikeById(@PathVariable String likeId) {
-		return switterService.findLikeById(likeId);
+	public ResponseEntity<SwitterLike> findLikeById(@PathVariable String likeId) {
+	 SwitterLike foundLike =  switterService.findLikeById(likeId);
+	 if(foundLike == null){
+		return ResponseEntity.notFound().build();
+	 }
+	 return ResponseEntity.ok(foundLike);
 	}
 
 	@GetMapping("/userId/{userId}")

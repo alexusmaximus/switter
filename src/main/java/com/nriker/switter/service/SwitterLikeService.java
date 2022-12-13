@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.nriker.switter.controller.RestErrorHandler.InvalidLikeException;
 import com.nriker.switter.model.SwitterLike;
 import com.nriker.switter.model.SwitterPost;
 import com.nriker.switter.model.SwitterUser;
@@ -27,7 +28,8 @@ public class SwitterLikeService {
 		SwitterUser switterUser = switterUserService.findUserById(like.getUserId());
 		if (switterUser == null) {
 			System.out.println("Der User nicht existiert!");
-			return null;
+			throw new InvalidLikeException();
+			// return null;
 		}
 		SwitterPost switterPost = switterPostService.findPostById(like.getPostId());
 		if (switterPost == null) {
